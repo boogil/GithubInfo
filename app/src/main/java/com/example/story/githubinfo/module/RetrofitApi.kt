@@ -13,7 +13,7 @@ class RetrofitApi {
     }
 
     interface GithubApiRepo {
-        @GET("{name}/repos??sort=stargazers_count")
+        @GET("{name}/repos?type=all&sort=stargazers_count&direction=desc")
         fun addParams(@Path("name") id: String?) : Call<Any>
     }
 }

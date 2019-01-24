@@ -8,6 +8,8 @@ import com.example.story.githubinfo.module.GitDataAdapter
 import com.example.story.githubinfo.module.RetrofitApi
 import com.google.gson.internal.LinkedTreeMap
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
 
@@ -21,7 +23,7 @@ class MainActivity : BaseActivity() {
         RetrofitBuilder().apply {
             call = create(RetrofitApi.GithubApiInfo::class.java).addParams(userName)
             onSuccess {
-                gitDataList.add(it as LinkedTreeMap<String, Any>)
+                var headerData = it as LinkedTreeMap<String, Any>
                 RetrofitBuilder().apply {
                     call = create(RetrofitApi.GithubApiRepo::class.java).addParams(userName)
                     onSuccess {
@@ -29,10 +31,15 @@ class MainActivity : BaseActivity() {
                         tmp.forEach {
                             gitDataList.add(it)
                         }
+                        // stargazers_count 내림차순 정렬
+                        var sortedList = gitDataList.sortedWith(compareBy({
+                            it.get("stargazers_count")?.toString()?.toDouble()})).reversed()
+                        var sortedArrayList = ArrayList(sortedList)
+                        sortedArrayList.add(0, headerData)
                         RV_MAIN.addItemDecoration(DividerItemDecoration(
                                 context, DividerItemDecoration.VERTICAL))
                         RV_MAIN.layoutManager = LinearLayoutManager(context)
-                        RV_MAIN.adapter = GitDataAdapter(context, gitDataList)
+                        RV_MAIN.adapter = GitDataAdapter(context, sortedArrayList)
                     }
                     onError { _, msg -> }
                     onFailure {}
@@ -44,4 +51,16 @@ class MainActivity : BaseActivity() {
             executeWithProgress(context)
         }
     }
+
+//    class IntegerComparator : Comparator<List<LinkedTreeMap<String, Any>>> {
+//        override fun compare(o1: List<LinkedTreeMap<String, Any>>?, o2: List<LinkedTreeMap<String, Any>>?): Int {
+//            var count1 = Integer.parseInt(o1?.get("stargazers_count").toString())
+//            var count2 = Integer.parseInt(o1?.get("stargazers_count").toString())
+//            return count2.compareTo(count1)
+//        }
+//
+//        override fun compare(o1: LinkedTreeMap<String, Any>?, o2: LinkedTreeMap<String, Any>?): Int {
+//
+//        }
+//    }
 }

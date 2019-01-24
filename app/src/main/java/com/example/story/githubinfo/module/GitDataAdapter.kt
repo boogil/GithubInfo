@@ -1,7 +1,6 @@
 package com.example.story.githubinfo.module
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,8 @@ import com.google.gson.internal.LinkedTreeMap
 import com.squareup.picasso.Picasso
 
 class GitDataAdapter(context: Context, mDataset: ArrayList<LinkedTreeMap<String, Any>>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    lateinit var context: Context
-    lateinit var mDataset: List<LinkedTreeMap<String, Any>>
+    var context: Context
+    var mDataset: List<LinkedTreeMap<String, Any>>
 
     init {
         this.context = context
@@ -86,7 +85,6 @@ class GitDataAdapter(context: Context, mDataset: ArrayList<LinkedTreeMap<String,
     }
 
     companion object {
-        const val ITEM_TYPE_KEY = "itemType"
         const val B_TYPE_HEADER = 1
         const val B_TYPE_ITEM = 2
 
