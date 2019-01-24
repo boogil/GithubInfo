@@ -1,4 +1,4 @@
-package com.appknot.mygoodfeel.module
+package com.example.story.githubinfo
 
 import android.content.Context
 import com.example.story.githubinfo.BaseActivity
@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
- * Retrofit
+ * Retrofit 재사용
  */
 class RetrofitBuilder {
     fun <T> create(apiInterface: Class<T>): T = retrofit.create(apiInterface)
