@@ -1,11 +1,10 @@
-package com.example.story.githubinfo.module
+package com.example.story.githubinfo
 
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.example.story.githubinfo.R
 
 open class BaseActivity : AppCompatActivity() {
     private var loadingDialogList: ArrayList<AlertDialog?> = ArrayList()

@@ -1,16 +1,13 @@
 package com.example.story.githubinfo
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.appknot.mygoodfeel.module.RetrofitBuilder
-import com.example.story.githubinfo.module.BaseActivity
 import com.example.story.githubinfo.module.GitDataAdapter
 import com.example.story.githubinfo.module.RetrofitApi
 import com.google.gson.internal.LinkedTreeMap
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
 
 class MainActivity : BaseActivity() {
 

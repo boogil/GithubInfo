@@ -1,9 +1,7 @@
 package com.appknot.mygoodfeel.module
 
 import android.content.Context
-import android.support.v7.app.AlertDialog
-import android.view.View
-import com.example.story.githubinfo.module.BaseActivity
+import com.example.story.githubinfo.BaseActivity
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import retrofit2.Call
