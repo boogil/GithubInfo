@@ -8,6 +8,7 @@
 /.idea/workspace.xml
 /.idea/codeStyles/Project.xml
 /.idea/gradle.xml
+./app/src/main/java/com/example/story/githubinfo/module/RetrofitBuilderOrigin.kt
 .DS_Store
 /build
 /captures

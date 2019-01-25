@@ -35,15 +35,9 @@ class RetrofitBuilder {
                 hideProgress()
                 response.body()?.run {
                     response;
-//                    when (this.code) {
-//                        CODE_SUCCESS -> {successListener?.invoke(this.data) }
-//                        else -> {errorListener?.invoke(this.code, this.msg.ko) }
-//                    }
                     successListener?.invoke(this)
-
                 }
             }
-
             override fun onFailure(call: Call<Any>, t: Throwable) {
                 hideProgress()
                 failureListener?.invoke()
@@ -61,19 +55,6 @@ class RetrofitBuilder {
             progressVisibility = true
         }
         execute()
-    }
-
-
-
-    /**
-     * JSON 정보 담고 있는 맵을 자바 객체로 변환
-     * @param data JSON 정보를 담고 있는 맵 객체
-     * @param modelType 결과를 담을 자바 객체 클래스 타입
-     * @return 변환 완료된 자바 객체 클래스 타입의 인스턴스
-     */
-    fun <T> parse(data: LinkedTreeMap<*, *>, modelType: Class<T>): T {
-        val jsonStr = Gson().toJson(data)
-        return Gson().fromJson(jsonStr, modelType)
     }
 
     fun onSuccess(body: (data: Any) -> Unit): RetrofitBuilder {
@@ -99,8 +80,6 @@ class RetrofitBuilder {
     }
 
     companion object {
-        const val CODE_SUCCESS = "0"
-
         const val apiPath = "https://api.github.com/users/"
         private var retrofit = buildRetrofit(apiPath)
 
